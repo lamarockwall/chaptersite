@@ -1,4 +1,5 @@
 "use client"
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
 import { commonConfig } from "../config/commonConfig";
 import PreLoader from "./components/Preloader";
@@ -17,6 +18,8 @@ import ClassicHeader from "./components/ClassicHeader";
 import { Tooltip } from "./components/Tooltip";
 
 export default function Home2() {
+  const Home = dynamic(() => import ('./components/Home'))
+
   const classicHeader = commonConfig.classicHeader;
   const darkTheme = commonConfig.darkTheme;
 
