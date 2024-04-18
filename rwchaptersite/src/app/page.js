@@ -18,7 +18,9 @@ import ClassicHeader from "./components/ClassicHeader";
 import { Tooltip } from "./components/Tooltip";
 
 export default function Home2() {
-  const Home = dynamic(() => import ('./components/Home'))
+  const Home = dynamic(() => import ('./components/Home'), {
+    ssr: false,
+  })
   const PreLoader = dynamic(() => import ('./components/PreLoader'), {
     ssr: false,
   })
