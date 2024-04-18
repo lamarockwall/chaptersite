@@ -18,12 +18,6 @@ import ClassicHeader from "./components/ClassicHeader";
 
 
 export default function Home2() {
-  const Home = dynamic(() => import ('./components/Home'), {
-    
-  })
-  const PreLoader = dynamic(() => import ('./components/PreLoader'), {
-    
-  })
 
 
   const classicHeader = commonConfig.classicHeader;

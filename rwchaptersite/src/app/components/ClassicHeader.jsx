@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { Tooltip } from "./Tooltip";
 import { Link } from "react-scroll";
 
 const ClassicHeader = ({ handleNavClick }) => {
@@ -204,41 +203,7 @@ const ClassicHeader = ({ handleNavClick }) => {
             </div>
           </div>
           <div className="col-auto col-lg-2 d-flex justify-content-end">
-            <ul className="social-icons social-icons-light">
-              <li className="social-icons-twitter">
-                <Tooltip text="Twitter" placement="top">
-                  <a
-                    href="http://www.twitter.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-twitter" />
-                  </a>
-                </Tooltip>
-              </li>
-              <li className="social-icons-facebook">
-                <Tooltip text="Facebook" placement="top">
-                  <a
-                    href="http://www.facebook.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-facebook-f" />
-                  </a>
-                </Tooltip>
-              </li>
-              <li className="social-icons-dribbble">
-                <Tooltip text="Dribbble" placement="top">
-                  <a
-                    href="http://www.dribbble.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-dribbble" />
-                  </a>
-                </Tooltip>
-              </li>
-            </ul>
+            
           </div>
         </div>
       </nav>
