@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 import Founders from "./components/Founders";
 import Swr from "./components/Swr";
 import ClassicHeader from "./components/ClassicHeader";
-import { Tooltip } from "./components/Tooltip";
+
 
 export default function Home2() {
   const Home = dynamic(() => import ('./components/Home'), {
@@ -124,18 +124,7 @@ export default function Home2() {
           ></Footer>
         </div>
         {/* back to top */}
-        <Tooltip text="Back to Top" placement="left">
-          <span
-            id="back-to-top"
-            className="rounded-circle"
-            style={{ display: scrollTopVisible ? "inline" : "none" }}
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <i className="fa fa-chevron-up"></i>
-          </span>
-        </Tooltip>
+       
       
     </>
   );
