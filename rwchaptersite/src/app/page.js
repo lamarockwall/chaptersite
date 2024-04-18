@@ -19,10 +19,10 @@ import { Tooltip } from "./components/Tooltip";
 
 export default function Home2() {
   const Home = dynamic(() => import ('./components/Home'), {
-    ssr: false,
+    
   })
   const PreLoader = dynamic(() => import ('./components/PreLoader'), {
-    ssr: false,
+    
   })
 
 
@@ -69,11 +69,7 @@ export default function Home2() {
 
   return (
     <>
-      <div
-        style={{ position: "relative" }}
-        className={classicHeader ? "" : "side-header"}
-      >
-        {isLoading && <PreLoader></PreLoader>}
+     
 
         <div id="main-wrapper">
           {classicHeader ? (
@@ -140,7 +136,7 @@ export default function Home2() {
             <i className="fa fa-chevron-up"></i>
           </span>
         </Tooltip>
-      </div>
+      
     </>
   );
 }
