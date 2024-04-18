@@ -1,5 +1,4 @@
 'use client'
-import Image from "next/image";
 import { commonConfig } from "../config/commonConfig";
 import { useEffect, useState } from "react";
 import PreLoader from "./components/Preloader";
@@ -16,7 +15,6 @@ import Founders from "./components/Founders";
 import Swr from "./components/Swr";
 import ClassicHeader from "./components/ClassicHeader";
 import { Tooltip } from "./components/Tooltip";
-import styles from "./page.module.css";
 
 export default function Home2() {
   const classicHeader = commonConfig.classicHeader;
