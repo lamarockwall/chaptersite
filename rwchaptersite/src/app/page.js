@@ -19,6 +19,10 @@ import { Tooltip } from "./components/Tooltip";
 
 export default function Home2() {
   const Home = dynamic(() => import ('./components/Home'))
+  const PreLoader = dynamic(() => import ('./components/PreLoader'), {
+    ssr: false,
+  })
+
 
   const classicHeader = commonConfig.classicHeader;
   const darkTheme = commonConfig.darkTheme;
