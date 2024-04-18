@@ -1,6 +1,5 @@
-'use client'
-import { commonConfig } from "../config/commonConfig";
 import { useEffect, useState } from "react";
+import { commonConfig } from "../config/commonConfig";
 import PreLoader from "./components/Preloader";
 import Header from "./components/Header";
 import Home from "./components/Home";
@@ -26,19 +25,20 @@ export default function Home2() {
 
   const [scrollTopVisible, setScrollTopVisible] = useState(false);
   const [isLoading, setisLoading] = useState(true);
+
   useEffect(() => {
     const loadingTimeout = setTimeout(() => {
       setisLoading(false);
     }, 1000);
+
+    // Cleanup function for the setTimeout
     return () => {
       clearTimeout(loadingTimeout);
     };
   }, []);
 
-  const checkScrollTop = () => {
-    let scrollTopBtn = document.getElementById("back-to-top");
-
-    if (scrollTopBtn) {
+  useEffect(() => {
+    const checkScrollTop = () => {
       if (
         document.body.scrollTop > 400 ||
         document.documentElement.scrollTop > 400
@@ -47,12 +47,15 @@ export default function Home2() {
       } else {
         setScrollTopVisible(false);
       }
-    }
-  };
+    };
 
-  if (typeof window !== "undefined") {
     window.addEventListener("scroll", checkScrollTop);
-  }
+
+    // Cleanup function for the event listener
+    return () => {
+      window.removeEventListener("scroll", checkScrollTop);
+    };
+  }, []); // Empty dependency array means this effect runs only once after the component mounts
 
   return (
     <>
@@ -103,7 +106,7 @@ export default function Home2() {
               classicHeader={classicHeader}
               darkTheme={darkTheme}
             ></Contact>
-             <Swr
+            <Swr
               classicHeader={classicHeader}
               darkTheme={darkTheme}
             ></Swr>
@@ -127,7 +130,6 @@ export default function Home2() {
             <i className="fa fa-chevron-up"></i>
           </span>
         </Tooltip>
-
       </div>
     </>
   );
