@@ -1,95 +1,136 @@
+'use client'
 import Image from "next/image";
+import { commonConfig } from "../config/commonConfig";
+import { useEffect, useState } from "react";
+import PreLoader from "./components/Preloader";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import AboutUs from "./components/About";
+import Services from "./components/Services";
+import Resume from "./components/Resume";
+import Portfolio from "./components/Portfolio";
+import Testimonials from "./components/Testimonials";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+import Founders from "./components/Founders";
+import Swr from "./components/Swr";
+import ClassicHeader from "./components/ClassicHeader";
+import { Tooltip } from "./components/Tooltip";
 import styles from "./page.module.css";
 
-export default function Home() {
+export default function Home2() {
+  const classicHeader = commonConfig.classicHeader;
+  const darkTheme = commonConfig.darkTheme;
+
+  const handleNavClick = (section) => {
+    document.getElementById(section).scrollIntoView({ behavior: "smooth" });
+  };
+
+  const [scrollTopVisible, setScrollTopVisible] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
+  useEffect(() => {
+    const loadingTimeout = setTimeout(() => {
+      setisLoading(false);
+    }, 1000);
+    return () => {
+      clearTimeout(loadingTimeout);
+    };
+  }, []);
+
+  const checkScrollTop = () => {
+    let scrollTopBtn = document.getElementById("back-to-top");
+
+    if (scrollTopBtn) {
+      if (
+        document.body.scrollTop > 400 ||
+        document.documentElement.scrollTop > 400
+      ) {
+        setScrollTopVisible(true);
+      } else {
+        setScrollTopVisible(false);
+      }
+    }
+  };
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", checkScrollTop);
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div
+        style={{ position: "relative" }}
+        className={classicHeader ? "" : "side-header"}
+      >
+        {isLoading && <PreLoader></PreLoader>}
+
+        <div id="main-wrapper">
+          {classicHeader ? (
+            <ClassicHeader handleNavClick={handleNavClick}></ClassicHeader>
+          ) : (
+            <Header handleNavClick={handleNavClick}></Header>
+          )}
+
+          <div id="content" role="main">
+            <Home
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+              handleNavClick={handleNavClick}
+            ></Home>
+            <AboutUs
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></AboutUs>
+            <Services
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Services>
+            <Resume
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Resume>
+            <Founders
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Founders>
+            <Portfolio
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Portfolio>
+            <Testimonials
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Testimonials>
+            <Contact
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Contact>
+             <Swr
+              classicHeader={classicHeader}
+              darkTheme={darkTheme}
+            ></Swr>
+          </div>
+          <Footer
+            classicHeader={classicHeader}
+            darkTheme={darkTheme}
+            handleNavClick={handleNavClick}
+          ></Footer>
         </div>
+        {/* back to top */}
+        <Tooltip text="Back to Top" placement="left">
+          <span
+            id="back-to-top"
+            className="rounded-circle"
+            style={{ display: scrollTopVisible ? "inline" : "none" }}
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            <i className="fa fa-chevron-up"></i>
+          </span>
+        </Tooltip>
+
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </>
   );
 }
